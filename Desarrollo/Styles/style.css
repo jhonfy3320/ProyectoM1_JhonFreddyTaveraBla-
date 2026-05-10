@@ -55,7 +55,7 @@ body {
       135deg,
       #391347,
       #1e1b4b,
-      #537819,
+      #107549,
       #5c13b5
     );
 
@@ -65,4 +65,59 @@ body {
 
   animation:
     animatedBackground 14s ease infinite;
+}
+
+#app-container {
+
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.main-content {
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Secciones */
+
+.controls-section,
+.palette-section {
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(14px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: var(--border-radius);
+
+  padding: 2rem;
+
+  box-shadow: var(--shadow-primary);
+
+  transition:
+    transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+}
+
+/* Hover elegante */
+
+.controls-section:hover,
+.palette-section:hover {
+
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 14px 40px rgba(122, 55, 238, 0.35);
 }
