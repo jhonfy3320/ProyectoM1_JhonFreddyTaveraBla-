@@ -24,12 +24,7 @@
   --transition-fast: 0.2s ease;
   --transition-medium: 0.4s ease;
 
-  --font-main:
-    'Segoe UI',
-    Tahoma,
-    Geneva,
-    Verdana,
-    sans-serif;
+  --font-main: 'Poppins', sans-serif;
 }
 
 * {
@@ -145,6 +140,108 @@ body::before {
   pointer-events: none;
 
   z-index: -1;
+}
+
+/* =========================
+   TIPOGRAFÍA Y JERARQUÍA
+========================= */
+
+.main-header {
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  gap: 1.5rem;
+
+  padding-top: 2rem;
+
+  animation:
+    fadeUp 1s ease;
+}
+
+/* Título principal */
+
+.app-title {
+
+  font-size: clamp(2.8rem, 6vw, 5rem);
+
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #c084fc,
+      #22d3ee
+    );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  cursor: default;
+
+  transition:
+    transform var(--transition-medium),
+    text-shadow var(--transition-medium);
+}
+
+/* Subtítulo */
+
+.app-description {
+
+  max-width: 700px;
+
+  font-size: 1.1rem;
+
+  font-weight: 300;
+
+  line-height: 1.8;
+
+  letter-spacing: 0.5px;
+
+  color: var(--color-text-secondary);
+
+  opacity: 0.95;
+
+  transition:
+    transform var(--transition-medium),
+    color var(--transition-medium);
+}
+
+/* Títulos secundarios */
+
+.controls-section h2,
+.palette-section h2 {
+
+  font-size: 1.8rem;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 2rem;
+
+  color: var(--color-text-primary);
+
+  position: relative;
+
+  display: inline-block;
+
+  transition:
+    transform var(--transition-fast),
+    text-shadow var(--transition-fast);
 }
 
 /* =========================
