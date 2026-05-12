@@ -244,6 +244,76 @@ body::before {
     text-shadow var(--transition-fast);
 }
 
+
+/* Glow principal */
+
+.app-title:hover {
+
+  transform: scale(1.03);
+
+  text-shadow:
+    0 0 10px rgba(192, 132, 252, 0.6),
+    0 0 20px rgba(34, 211, 238, 0.4),
+    0 0 40px rgba(124, 58, 237, 0.3);
+}
+
+/* Hover subtítulo */
+
+.app-description:hover {
+
+  transform: translateY(-2px);
+
+  color: #f8fafc;
+}
+
+/* Hover títulos secundarios */
+
+.controls-section h2:hover,
+.palette-section h2:hover {
+
+  transform: translateX(4px);
+
+  text-shadow:
+    0 0 12px rgba(124, 58, 237, 0.6);
+}
+
+/* Línea decorativa */
+
+.controls-section h2::after,
+.palette-section h2::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 60%;
+
+  height: 3px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+
+  transition:
+    width var(--transition-medium);
+}
+
+/* Expansión */
+
+.controls-section h2:hover::after,
+.palette-section h2:hover::after {
+
+  width: 100%;
+}
+
 /* =========================
    ANIMACIONES GLOBALES
 ========================= */
