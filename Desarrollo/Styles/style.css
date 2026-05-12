@@ -12,9 +12,7 @@
    --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-
   --border-radius: 18px;
-
   --shadow-primary:
     0 10px 30px rgba(124, 58, 237, 0.35);
 
@@ -115,31 +113,6 @@ body {
 
   box-shadow:
     0 14px 40px rgba(122, 55, 238, 0.35);
-}
-
-body::before {
-
-  content: "";
-
-  position: fixed;
-
-  inset: 0;
-
-  background:
-    radial-gradient(
-      circle at top left,
-      rgba(124, 58, 237, 0.25),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(6, 182, 212, 0.2),
-      transparent 40%
-    );
-
-  pointer-events: none;
-
-  z-index: -1;
 }
 
 /* =========================
@@ -315,6 +288,303 @@ body::before {
 }
 
 /* =========================
+   PALETAS Y TARJETAS
+========================= */
+
+.palette-container {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 2rem;
+
+  margin-top: 2rem;
+}
+
+/* Tarjeta principal */
+
+.color-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  min-height: 360px;
+
+  border-radius: 24px;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(18px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border 0.4s ease;
+
+  animation:
+    paletteFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover premium */
+
+.color-card:hover {
+
+  transform:
+    translateY(-10px) scale(1.02);
+
+  border:
+    1px solid rgba(124, 58, 237, 0.6);
+
+  box-shadow:
+    0 0 20px rgba(124, 58, 237, 0.35),
+    0 0 40px rgba(6, 182, 212, 0.15);
+}
+
+/* Bloques de color */
+
+.color-preview {
+
+  flex: 1;
+
+  min-height: 120px;
+
+  position: relative;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+/* Jerarquía visual */
+
+.color-preview.primary {
+  flex: 2;
+}
+
+.color-preview.secondary {
+  flex: 1.2;
+}
+
+.color-preview.accent {
+  flex: 0.8;
+}
+
+/* Hover color */
+
+.color-preview:hover {
+
+  transform: scale(1.02);
+
+  filter: brightness(1.08);
+}
+
+/* Información */
+
+.color-info {
+
+  padding: 1.2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+
+  background:
+    rgba(15, 23, 42, 0.55);
+
+  backdrop-filter: blur(12px);
+}
+
+/* Código color */
+
+.color-code {
+
+  font-size: 1rem;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
+  color: var(--color-text-primary);
+
+  opacity: 0.85;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Hover muestra intensidad */
+
+.color-card:hover .color-code {
+
+  opacity: 1;
+
+  transform: translateX(4px);
+}
+
+/* Acciones */
+
+.card-actions {
+
+  display: flex;
+
+  gap: 1rem;
+}
+
+/* Botones internos */
+
+.copy-btn,
+.lock-btn {
+
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background:
+
+    rgba(255, 255, 255, 0.08);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.copy-btn:focus-visible,
+.lock-btn:focus-visible,
+.generate-btn:focus-visible,
+select:focus-visible {
+
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* Hover botones */
+.copy-btn:hover,
+.lock-btn:hover {
+
+  transform: translateY(-2px);
+
+  background:
+    rgba(124, 58, 237, 0.25);
+
+  box-shadow:
+    0 0 15px rgba(124, 58, 237, 0.35);
+}
+
+/* Estado activo */
+
+.copy-btn:active,
+.lock-btn:active {
+
+  transform: scale(0.96);
+}
+
+/* Placeholder inicial */
+
+.empty-message {
+
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 3rem;
+
+  border-radius: 20px;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(10px);
+
+  color: var(--color-text-secondary);
+
+  font-size: 1rem;
+
+  letter-spacing: 1px;
+}
+
+/* =========================
+   FEEDBACK COPIADO
+========================= */
+
+.copied {
+
+  position: relative;
+
+  overflow: hidden;
+
+  animation:
+    copiedPulse 0.6s ease;
+}
+
+.copied::after {
+
+  content: "¡Copiado!";
+
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(34, 197, 94, 0.9);
+
+  color: white;
+
+  font-weight: 600;
+
+  letter-spacing: 1px;
+
+  animation:
+    copiedFade 0.6s ease forwards;
+}
+
+body::before {
+
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(124, 58, 237, 0.25),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(6, 182, 212, 0.2),
+      transparent 40%
+    );
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+/* =========================
    ANIMACIONES GLOBALES
 ========================= */
 
@@ -332,3 +602,67 @@ body::before {
     background-position: 0% 50%;
   }
 }
+@keyframes fadeUp {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(30px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+@keyframes paletteFadeUp {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(40px)
+      scale(0.95);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes copiedPulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes copiedFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
